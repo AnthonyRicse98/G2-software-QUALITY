@@ -1,0 +1,24 @@
+{
+  "name": "G2-software-QUALITY",
+  "version": "1.0.0",
+  "description": "Trabajo web de tienda online desarrollado : Anthony Ricse Perez  Marco Porras  Sebastian  Richard Surco",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyRicse98/G2-software-QUALITY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyRicse98/G2-software-QUALITY/issues"
+  },
+  "homepage": "https://github.com/AnthonyRicse98/G2-software-QUALITY#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemailer": "^6.6.2"
+  }
+}
