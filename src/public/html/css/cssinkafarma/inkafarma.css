@@ -1,0 +1,12 @@
+*body {
+    block-size: auto;
+}
+
+.home-section {
+    position: relative;
+    background: #fff;
+    height: 100vh;
+    left: 260px;
+    width: calc(100% - 260px);
+    transition: all 0.5s ease;
+}
