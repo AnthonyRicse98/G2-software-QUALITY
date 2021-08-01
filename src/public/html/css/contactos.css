@@ -1,0 +1,52 @@
+.form-register{
+ 
+    background: #444442;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: #9b9b9b;
+    
+    
+}
+.form-control{
+    
+    background:  #2d2d2d;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border:1px solid #2d2d2d;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif, 'arial';
+    font-size: 0.75em;
+}
+
+.card{
+    background: #444442;
+    border: none;
+}
+body{
+    background: #444442;
+    font-family: 'Roboto', sans-serif, 'arial';
+}
+body h4{
+    font-family: 'Roboto', sans-serif, 'arial';
+    font-weight: 400;
+    font-size: 20px;
+    color: #9b9b9b;
+    line-height: 1.5;
+}
+body h2{
+    font-family: 'Poppins', sans-serif, 'arial';
+    font-weight: 600;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+}
+.form-register .btn{
+    width: 100%;
+    background: #1f53c5;
+    border-radius: 5px;
+    color: white;
+    margin: 5px 0;
+    font-size: 16px;
+    
+}
