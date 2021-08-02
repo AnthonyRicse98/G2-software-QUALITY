@@ -81,7 +81,7 @@ const productsShampoo =
         stock : 50 
     },
 ];
-
+//--api get---
 app.get("/productsFormula",(req , res )=>{
     res.send(productsFormula);
 });
@@ -91,6 +91,12 @@ app.get("/productsBabysec",(req , res )=>{
 });
 app.get("/productsShampoo",(req , res )=>{
     res.send(productsShampoo);
+});
+
+//--api post--
+app.post("/productsPayFormula", (req , res) => {
+    console.log(req.body);
+    res.send(productsFormula);
 });
 
 

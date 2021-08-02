@@ -1,28 +1,37 @@
-let products = [];
+let carrito = [];
 let total = 0;
 
-function addF(product, price) {
-    console.log(product, price);
-    products.push(product);
+function addF(productId, price) {
+    console.log(productId, price);
+    carrito.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
-function addB(product, price) {
-    console.log(product, price);
-    products.push(product);
+function addB(productId, price) {
+    console.log(productId, price);
+    carrito.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
-function addS(product, price) {
-    console.log(product, price);
-    products.push(product);
+function addS(productId, price) {
+    console.log(productId, price);
+    carrito.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 
 function pay() {
     //metodo post
-    window.alert(products.join(", \n"));
+    const productsFormulaList = await (await fetch("/productsPayFormula" , {
+
+        method : "post",
+        body : JSON.stringify(carrito),
+        headers : {
+            "Content-Types" : "application/json"
+        }
+    })).json();
+
+   /* window.alert(carrito.join(", \n"));*/
 }
 
 //--Funcion--
