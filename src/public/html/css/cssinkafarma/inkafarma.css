@@ -11,13 +11,13 @@
 }
 /*paginacion*/
 
-#Formula:checked ~ #producto .Babysec , #Formula:checked ~ #producto .Shampoo{
+#Formula-container:checked ~ #producto .Shampoo-container , #Formula-container:checked ~ #producto .Babysec-container{
 	display: none;
 }
-#Babysec:checked ~ #producto .Formula , #Babysec:checked ~ #producto .Shampoo{
+#Babysec-container:checked ~ #producto .Formula-container , #Babysec-container:checked ~ #producto .Shampoo-container{
 	display: none;
 }
-#Shampoo:checked ~ #producto .Babysec , #Shampoo:checked ~ #producto .Formula {
+#Shampoo-container:checked ~ #producto .Babysec-container , #Shampoo-container:checked ~ #producto .Formula-container {
     display: none;
 }
 
@@ -32,15 +32,28 @@
     text-align: center;
     justify-content: center ;
 }
-
-.page-content{
+/*page content*/
+.Formula{
+    background-color: white;
+    display: flex;
+   flex-wrap: wrap;
+     justify-content: space-evenly;
+}
+.Babysec{
+    background-color: white;
+    display: flex;
+   flex-wrap: wrap;
+     justify-content: space-evenly;
+}
+.Shampoo{
     background-color: white;
     display: flex;
    flex-wrap: wrap;
      justify-content: space-evenly;
 }
 /*Product container*/
-.product-container{
+/*Formula*/
+.Formula-container{
     margin: 18px;
     padding:  2px 16px;
     position: relative;
@@ -48,13 +61,51 @@
 
 }
 
-.product-container:hover{
+.Formula-container:hover{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
-.product-container img{
+.Formula-container img{
     width:  260px;
 }
-.product-container h2{
+.Formula-container h2{
+   margin-bottom: 10px;
+   margin-left: 20px;
+}
+/*Shampoo*/
+.Shampoo-container{
+    margin: 18px;
+    padding:  2px 16px;
+    position: relative;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+.Shampoo-container:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+.Shampoo-container img{
+    width:  260px;
+}
+.Shampoo-container h2{
+   margin-bottom: 10px;
+   margin-left: 20px;
+}
+/*Babysec*/
+.Babysec-container{
+    margin: 18px;
+    padding:  2px 16px;
+    position: relative;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+.Babysec-container:hover{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
+.Babysec-container img{
+    width:  260px;
+}
+.Babysec-container h2{
    margin-bottom: 10px;
    margin-left: 20px;
 }

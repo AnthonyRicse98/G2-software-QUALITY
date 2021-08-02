@@ -7,6 +7,94 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(require('./routes/email'));
+const productsFormula =
+[
+    {
+        id : 1,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac1Pro.jpg",
+        stock : 50 
+    },
+    {
+        id : 2,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac1Pro.jpg",
+        stock : 50 
+    },
+    {
+        id : 3,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac1Pro.jpg",
+        stock : 50 
+    },
+];
+
+const productsBaybysec =
+[
+    {
+        id : 1,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        stock : 50 
+    },
+    {
+        id : 2,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        stock : 50 
+    },
+    {
+        id : 3,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        stock : 50 
+    },
+];
+const productsShampoo =
+[
+    {
+        id : 1,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 50 
+    },
+    {
+        id : 2,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 50 
+    },
+    {
+        id : 3,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 50 
+    },
+];
+
+app.get("/productsFormula",(req , res )=>{
+    res.send(productsFormula);
+});
+
+app.get("/productsBabysec",(req , res )=>{
+    res.send(productsBaybysec);
+});
+app.get("/productsShampoo",(req , res )=>{
+    res.send(productsShampoo);
+});
+
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(3000, () => {
     console.log('server on port 3000');
