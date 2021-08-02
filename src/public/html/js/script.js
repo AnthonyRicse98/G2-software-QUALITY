@@ -21,6 +21,7 @@ function addS(product, price) {
 }
 
 function pay() {
+    //metodo post
     window.alert(products.join(", \n"));
 }
 
