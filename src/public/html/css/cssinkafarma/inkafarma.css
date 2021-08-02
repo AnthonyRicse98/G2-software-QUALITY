@@ -34,6 +34,7 @@
 }
 /*page content*/
 .Formula{
+   
     background-color: white;
     display: flex;
    flex-wrap: wrap;
@@ -54,7 +55,9 @@
 /*Product container*/
 /*Formula*/
 .Formula-container{
-    margin: 18px;
+    border-radius:2px;
+
+    margin: 15px;
     padding:  2px 16px;
     position: relative;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
@@ -71,9 +74,14 @@
    margin-bottom: 10px;
    margin-left: 20px;
 }
+.Formula-container h3{
+  text-align: center;
+ }
 /*Shampoo*/
 .Shampoo-container{
-    margin: 18px;
+   border-radius:2px;
+    
+    margin: 15px;
     padding:  2px 16px;
     position: relative;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
@@ -90,9 +98,14 @@
    margin-bottom: 10px;
    margin-left: 20px;
 }
+.Shampoo-container h3{
+    text-align: center;
+ }
 /*Babysec*/
 .Babysec-container{
-    margin: 18px;
+    border-radius:2px;
+    
+    margin: 15px;
     padding:  2px 16px;
     position: relative;
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
@@ -109,6 +122,9 @@
    margin-bottom: 10px;
    margin-left: 20px;
 }
+.Babysec-container h3{
+    text-align: center;
+ }
 /*buton*/
 .button {
     transition-duration: 0.4s;
