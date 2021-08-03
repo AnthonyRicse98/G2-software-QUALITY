@@ -17,24 +17,31 @@ let productsFormula =
 [
     {
         id : 1.1,
-        name : "name",
-        price : 30 , 
+        name : "Babylac Pro 1",
+        price : 47.90, 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
         stock : 3
     },
     {
         id : 1.2,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 50 
+        name : "Baybylac Pro 3",
+        price : 32.90, 
+        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        stock : 15 
     },
     {
-        id : 1.33,
-        name : "name",
+        id : 1.3,
+        name : "Baybylac Pro 2",
         price : 30 , 
-        image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 50 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 10 
+    },
+    {
+        id : 1.4,
+        name : "Baybylac 3",
+        price : 26.90 , 
+        image: "images/FormulaLactea/Baybylac3.jpg",
+        stock : 8 
     },
 ];
 
@@ -42,48 +49,48 @@ let productsBaybysec =
 [
     {
         id : 2.1,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        name : "Babysec Super",
+        price : 43.50 , 
+        image: "images/Babysec/BabysecXXGblue.jpg",
         stock : 4,
     },
     {
         id : 2.2,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 50 
+        name : "Babysec premiun",
+        price : 43.50 , 
+        image: "images/Babysec/BabysecXGpurple.jpg",
+        stock : 20
     },
     {
         id : 2.3,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 50 
+        name : "Babysec super",
+        price : 43.50 , 
+        image: "images/Babysec/BabysecXGPblue.jpg",
+        stock :5
     },
 ];
 let productsShampoo =
 [
     {
         id : 3.1,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
+        name : "savital colageno",
+        price : 12.50 , 
+        image: "images/Shampoo/SavitalColageno.jpg",
         stock : 5
     },
     {
         id : 3.2,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 50 
+        name : "savital anticaspa",
+        price : 12.50 , 
+        image: "images/Shampoo/SavitalAnticaspa.jpg",
+        stock : 24
     },
     {
         id : 3.3,
-        name : "name",
+        name : "H&S proteccion caida",
         price : 30 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 50 
+        image: "images/Shampoo/H&SProteccion.jpg",
+        stock : 3
     },
 ];
 
