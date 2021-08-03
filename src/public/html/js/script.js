@@ -20,7 +20,7 @@ function addS(productId, price) {
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 
-function pay() {
+async function pay() {
     //metodo post
     const productsFormulaList = await (await fetch("/productsPayFormula" , {
 

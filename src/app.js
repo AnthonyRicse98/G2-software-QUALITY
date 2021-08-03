@@ -1,6 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(bodyParser.json());
 
 //nos creara un objeto vacio y el jsones para que entienda angular o react
 app.use(express.urlencoded({ extended: false }));
