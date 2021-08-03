@@ -105,7 +105,7 @@ async function pay(){
         `<div class="Formula-container">
              <h3>${pf.name}</h3>
              <img src="${pf.image}" />
-             <h2>S/.${pf.price}</h2>
+             <h2>${"S/."+pf.price}</h2>
               ${buttonFormHTML}
          </div>`
     });
