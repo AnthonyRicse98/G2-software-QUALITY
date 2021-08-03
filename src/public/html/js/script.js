@@ -42,7 +42,8 @@ function addS(productId, price) {
 
 
 async function pay(){
-    const productsBaybysecList =await (
+    try{
+      const productsBaybysecList =await (
 
         await fetch("/babysec", {
           method: "post",
@@ -52,7 +53,16 @@ async function pay(){
           },
         })
       ).json();
+    }catch{
+      window.alert("sin stock Babysec");
+      carritob = [];
+      total = 0 ;
+      await fetchProductsBaby();
+      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 
+    }
+
+     try{
       const productsFormulaList =await (
 
         await fetch("/Formula", {
@@ -63,6 +73,16 @@ async function pay(){
           },
         })
       ).json();
+      
+     }catch{
+      window.alert("Sin Stock Formula");
+       carritof = [];
+       total =0;
+      await fetchProductsForm();  
+      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+
+     }
+     
 
       const productsShampooList =await (
 
@@ -76,7 +96,6 @@ async function pay(){
       ).json();
   
 }
-
 
 //--Funcion--
     function displayProductsS( ){     
@@ -153,15 +172,20 @@ function displayProductsB( ){
     document.getElementById('Babysec-conten').innerHTML  = productsBabysecHTML ; 
 
 }
-
+async function fetchProductsForm(){
+  productsFormulaList =await(await fetch("/productsFormula")).json();
+  displayProductsF();
+}
+async function fetchProductsBaby(){
+  productsBaybysecList =await(await fetch("/productsBabysec")).json();
+  displayProductsB();
+}
 //--Impresion
 window.onload = async() => {
-     productsFormulaList =await(await fetch("/productsFormula")).json();
-     productsBaybysecList =await(await fetch("/productsBabysec")).json();
+    await fetchProductsForm();  
+    await fetchProductsBaby();
      productsShampooList =await(await fetch("/productsShampoo")).json();
-    
-    console.log(productsFormulaList,productsBaybysecList, productsShampooList);   
-    displayProductsF();
+     
     displayProductsB();
     displayProductsS();
    

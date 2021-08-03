@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(require('./routes/email'));
 //hola mundo
-const productsFormula =
+let productsFormula =
 [
     {
         id : 1.1,
@@ -38,14 +38,14 @@ const productsFormula =
     },
 ];
 
-const productsBaybysec =
+let productsBaybysec =
 [
     {
         id : 2.1,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 8,
+        stock : 4,
     },
     {
         id : 2.2,
@@ -69,7 +69,7 @@ const productsShampoo =
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 10
+        stock : 5
     },
     {
         id : 3.2,
@@ -104,28 +104,43 @@ app.get("/productsShampoo",(req , res )=>{
 app.post("/Babysec", (req , res)=>{
 
     const idsb = req.body;
-   
+   const productsBabyCopy = productsBaybysec.map(p => ({...p}));
 
     idsb.forEach(id => {
-        const productb = productsBaybysec.find( p => p.id === id );
-        productb.stock--;
-    })
-  
+        const productb = productsBabyCopy.find( p => p.id === id );
+        if(productb.stock>0){
+            productb.stock--;
+        }else{
+            throw("Sin stock babysec");
+        }
+        
+    });
+    productsBaybysec = productsBabyCopy;
   
     res.send(productsBaybysec)
 });
+
 app.post("/Formula", (req , res)=>{
 
    
     const ids = req.body;
 
+    const productsFormCopy = productsFormula.map(p => ({...p}));
+
     ids.forEach(id => {
-        const productf = productsFormula.find( p => p.id === id );
-        productf.stock--;
-    })
+        const productf = productsFormCopy.find( p => p.id === id );
+        if(productf.stock > 0){
+            productf.stock--;
+        }else{
+            throw("Sin Stock");
+        }
+     
+    });
+    productsFormula = productsFormCopy;
     res.send(productsFormula) 
    
 });
+
 app.post("/Shampoo", (req , res)=>{
 
    
