@@ -22,12 +22,16 @@ function addS(productId, price) {
 
 async function pay() {
     //metodo post
-    const productsFormulaList =await(await fetch("/productsPayFormula" , {
-        method : "post" , 
-        body : JSON.stringify(carrito),
-        headers : "Content-Type : application/json"
-    })).json();
-    window.alert(carrito.join(", \n"));
+    const productsFormulaList =await (
+        await fetch("/api/pay", {
+          method: "post",
+          body: JSON.stringify(carrito),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+    //window.alert(carrito.join(", \n"));
 }
 
 //--Funcion--

@@ -1,6 +1,11 @@
 const express = require('express');
+const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
+
+app.use(bodyParser.urlencoded({extended : true}));
+
+app.use(bodyParser.json());
 
 //nos creara un objeto vacio y el jsones para que entienda angular o react
 app.use(express.urlencoded({ extended: false }));
@@ -81,6 +86,7 @@ const productsShampoo =
         stock : 50 
     },
 ];
+
 //--get--
 app.get("/productsFormula",(req , res )=>{
     res.send(productsFormula);
@@ -92,8 +98,10 @@ app.get("/productsBabysec",(req , res )=>{
 app.get("/productsShampoo",(req , res )=>{
     res.send(productsShampoo);
 });
+
 //--post--
-app.post("/productsPayFormula" , (req , res)=>{
+app.post("/api/pay", (req , res)=>{
+    console.log(req.body);
     res.send(productsFormula)
 });
 
