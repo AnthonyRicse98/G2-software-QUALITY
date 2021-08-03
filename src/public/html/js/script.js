@@ -1,6 +1,7 @@
 //--La hacemos global--
 let productsFormulaList = [];
-
+let productsBaybysecList = [] ; 
+let productsShampooList = []
 
 
 let carritof = [];
@@ -20,16 +21,23 @@ function addF(productId, price) {
     displayProductsF();
 }
 function addB(productId, price) {
+  const productb = productsBaybysecList.find( p => p.id === productId );
+  productb.stock--;
+
     console.log(productId, price);
     carritob.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+    displayProductsB();
 }
 function addS(productId, price) {
+  const productS = productsShampooList.find( p => p.id === productId );
+  productS.stock--;
     console.log(productId, price);
     carritoS.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+    displayProductsS();
 }
 
 
@@ -71,17 +79,25 @@ async function pay(){
 
 
 //--Funcion--
-    function displayProductsS( productsShampooList){     
+    function displayProductsS( ){     
         let productssHAMPOOHTML = '' ; 
      
        
         productsShampooList.forEach(element => {
+          let buttonShamHTML  = `<button class="button-add" onclick="addS(${element.id}, ${element.price})">Agregar</button>`
+
+          if(element.stock <= 0){
+            buttonShamHTML  = `<button disabled class="button-add disabled" onclick="addS(${element.id}, ${element.price})">Sin stock</button>`;
+            
+          }
+
+
             productssHAMPOOHTML +=
             `<div class="Shampoo-container">
                  <h3>${element.name}</h3>
                  <img src="${element.image}" />
                  <h2>S/. ${element.price}</h2>
-                 <button class="button-add" onclick="addS(${element.id}, ${element.price})">Agregar</button>
+                 ${buttonShamHTML}
              </div>`
         });
          
@@ -114,16 +130,23 @@ async function pay(){
 
 }
 
-function displayProductsB(productsBaybysecList ){     
+function displayProductsB( ){     
     let productsBabysecHTML = '' ; 
   
     productsBaybysecList.forEach(element => {
+      
+      let buttonBabyHTML  = `<button class="button-add" onclick="addB(${element.id}, ${element.price})">Agregar</button>`
+      if(element.stock <= 0){
+        buttonBabyHTML  = `<button disabled class="button-add disabled" onclick="addB(${element.id}, ${element.price})">Sin stock</button>`;
+        
+      }
+    
         productsBabysecHTML +=
         `<div class="Babysec-container">
              <h3>${element.name}</h3>
              <img src="${element.image}" />
-             <h2>${element.price}</h2>
-             <button class="button-add" onclick="addB(${element.id}, ${element.price})">Agregar</button>
+             <h2>${"S/."+element.price}</h2>
+              ${buttonBabyHTML}
          </div>`
     });
      
@@ -134,11 +157,12 @@ function displayProductsB(productsBaybysecList ){
 //--Impresion
 window.onload = async() => {
      productsFormulaList =await(await fetch("/productsFormula")).json();
-    const productsBaybysecList =await(await fetch("/productsBabysec")).json();
-    const productsShampooList =await(await fetch("/productsShampoo")).json();
+     productsBaybysecList =await(await fetch("/productsBabysec")).json();
+     productsShampooList =await(await fetch("/productsShampoo")).json();
     
     console.log(productsFormulaList,productsBaybysecList, productsShampooList);   
     displayProductsF();
-    displayProductsS(productsShampooList);
-    displayProductsB(productsBaybysecList);
+    displayProductsB();
+    displayProductsS();
+   
 }
