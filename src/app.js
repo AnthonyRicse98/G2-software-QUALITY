@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 app.use(bodyParser.json());
 
-//nos creara un objeto vacio y el jsones para que entienda angular o react
+//nos creara un objeto vacio y el jsones para que entienda angular o reac
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
