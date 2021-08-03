@@ -20,7 +20,7 @@ const productsFormula =
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 50 
+        stock : 15 
     },
     {
         id : 2,
@@ -41,21 +41,21 @@ const productsFormula =
 const productsBaybysec =
 [
     {
-        id : 1,
+        id : 2.1,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac3Pro.jpg",
+        stock : 8,
+    },
+    {
+        id : 2.2,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac3Pro.jpg",
         stock : 50 
     },
     {
-        id : 2,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 50 
-    },
-    {
-        id : 3,
+        id : 2.3,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac3Pro.jpg",
@@ -65,21 +65,21 @@ const productsBaybysec =
 const productsShampoo =
 [
     {
-        id : 1,
+        id : 3.1,
+        name : "name",
+        price : 30 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 5
+    },
+    {
+        id : 3.2,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac2.jpg",
         stock : 50 
     },
     {
-        id : 2,
-        name : "name",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 50 
-    },
-    {
-        id : 3,
+        id : 3.3,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac2.jpg",
@@ -101,7 +101,11 @@ app.get("/productsShampoo",(req , res )=>{
 
 //--post--
 app.post("/api/pay", (req , res)=>{
-    console.log(req.body);
+    const ids = req.body;
+    ids.forEach(id => {
+        const product = productsFormula.find( p => p.id === id );
+        product.stock--;
+    });
     res.send(productsFormula)
 });
 
