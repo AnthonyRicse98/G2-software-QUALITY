@@ -20,7 +20,7 @@ const productsFormula =
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 15 
+        stock : 3
     },
     {
         id : 1.2,

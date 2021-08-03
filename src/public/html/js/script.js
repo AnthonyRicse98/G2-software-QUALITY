@@ -1,13 +1,23 @@
+//--La hacemos global--
+let productsFormulaList = [];
+
+
+
 let carritof = [];
 let carritob = [];
 let carritoS = [];
 let total = 0;
 
 function addF(productId, price) {
+    //--Descuenta al presionar button--
+        const productf = productsFormulaList.find( p => p.id === productId );
+        productf.stock--;
+
     console.log(productId, price);
     carritof.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+    displayProductsF();
 }
 function addB(productId, price) {
     console.log(productId, price);
@@ -70,7 +80,7 @@ async function pay(){
             `<div class="Shampoo-container">
                  <h3>${element.name}</h3>
                  <img src="${element.image}" />
-                 <h2>${element.price}</h2>
+                 <h2>S/. ${element.price}</h2>
                  <button class="button-add" onclick="addS(${element.id}, ${element.price})">Agregar</button>
              </div>`
         });
@@ -79,16 +89,24 @@ async function pay(){
 
    }
 
-   function displayProductsF(productsFormulaList ){     
+   function displayProductsF( ){     
     let productsFormulaHTML = '' ; 
   
-    productsFormulaList.forEach(element => {
+    productsFormulaList.forEach(pf => {
+
+      let buttonFormHTML  = `<button class="button-add" onclick="addF(${pf.id}, ${pf.price})">Agregar</button>`
+
+      if(pf.stock <= 0){
+        buttonFormHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">Sin stock</button>`;
+        
+      }
+
         productsFormulaHTML +=
         `<div class="Formula-container">
-             <h3>${element.name}</h3>
-             <img src="${element.image}" />
-             <h2>${element.price}</h2>
-             <button class="button-add" onclick="addF(${element.id}, ${element.price})">Agregar</button>
+             <h3>${pf.name}</h3>
+             <img src="${pf.image}" />
+             <h2>S/.${pf.price}</h2>
+              ${buttonFormHTML}
          </div>`
     });
      
@@ -115,12 +133,12 @@ function displayProductsB(productsBaybysecList ){
 
 //--Impresion
 window.onload = async() => {
-    const productsFormulaList =await(await fetch("/productsFormula")).json();
+     productsFormulaList =await(await fetch("/productsFormula")).json();
     const productsBaybysecList =await(await fetch("/productsBabysec")).json();
     const productsShampooList =await(await fetch("/productsShampoo")).json();
     
     console.log(productsFormulaList,productsBaybysecList, productsShampooList);   
-    displayProductsF(productsFormulaList);
+    displayProductsF();
     displayProductsS(productsShampooList);
     displayProductsB(productsBaybysecList);
 }
