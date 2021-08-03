@@ -69,7 +69,7 @@ const productsShampoo =
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 8
+        stock : 10
     },
     {
         id : 3.2,
