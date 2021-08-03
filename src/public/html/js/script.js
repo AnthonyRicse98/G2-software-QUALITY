@@ -84,6 +84,7 @@ async function pay(){
      }
      
 
+    try{
       const productsShampooList =await (
 
         await fetch("/Shampoo", {
@@ -94,6 +95,15 @@ async function pay(){
           },
         })
       ).json();
+    }catch{
+        window.alert("Sin stock Shampoo");
+         carritoS = [];
+          total = 0 ; 
+          await fetchProductssShampoo();
+          document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+
+    
+      }
   
 }
 
@@ -115,7 +125,7 @@ async function pay(){
             `<div class="Shampoo-container">
                  <h3>${element.name}</h3>
                  <img src="${element.image}" />
-                 <h2>S/. ${element.price}</h2>
+                 <h2>${"S/."+element.price}</h2>
                  ${buttonShamHTML}
              </div>`
         });
@@ -180,13 +190,14 @@ async function fetchProductsBaby(){
   productsBaybysecList =await(await fetch("/productsBabysec")).json();
   displayProductsB();
 }
+async function fetchProductssShampoo(){
+  productsShampooList =await(await fetch("/productsShampoo")).json();
+  displayProductsS();
+
+}
 //--Impresion
 window.onload = async() => {
     await fetchProductsForm();  
     await fetchProductsBaby();
-     productsShampooList =await(await fetch("/productsShampoo")).json();
-     
-    displayProductsB();
-    displayProductsS();
-   
+   await fetchProductssShampoo();
 }

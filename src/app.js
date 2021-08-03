@@ -62,7 +62,7 @@ let productsBaybysec =
         stock : 50 
     },
 ];
-const productsShampoo =
+let productsShampoo =
 [
     {
         id : 3.1,
@@ -142,14 +142,25 @@ app.post("/Formula", (req , res)=>{
 });
 
 app.post("/Shampoo", (req , res)=>{
-
-   
+    
     const idsS = req.body;
+    const productsSampCopy = productsShampoo.map(p => ({...p}));
+
 
     idsS.forEach(id => {
-        const productS = productsShampoo.find( p => p.id === id );
-        productS.stock--;
-    })
+        const productS = productsSampCopy.find( p => p.id === id );
+        
+        if(productS.stock > 0 ){
+            productS.stock--;
+        }else{
+            throw("Sin stock Shampoo");
+        }
+  
+    });
+
+
+    productsShampoo = productsSampCopy;
+
     res.send(productsShampoo) 
    
 });
