@@ -16,21 +16,21 @@ app.use(require('./routes/email'));
 const productsFormula =
 [
     {
-        id : 1,
+        id : 1.1,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
         stock : 15 
     },
     {
-        id : 2,
+        id : 1.2,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
         stock : 50 
     },
     {
-        id : 3,
+        id : 1.33,
         name : "name",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
@@ -100,14 +100,46 @@ app.get("/productsShampoo",(req , res )=>{
 });
 
 //--post--
-app.post("/api/pay", (req , res)=>{
-    const ids = req.body;
-    ids.forEach(id => {
-        const product = productsFormula.find( p => p.id === id );
-        product.stock--;
-    });
-    res.send(productsFormula)
+
+app.post("/Babysec", (req , res)=>{
+
+    const idsb = req.body;
+   
+
+    idsb.forEach(id => {
+        const productb = productsBaybysec.find( p => p.id === id );
+        productb.stock--;
+    })
+  
+  
+    res.send(productsBaybysec)
 });
+app.post("/Formula", (req , res)=>{
+
+   
+    const ids = req.body;
+
+    ids.forEach(id => {
+        const productf = productsFormula.find( p => p.id === id );
+        productf.stock--;
+    })
+    res.send(productsFormula) 
+   
+});
+app.post("/Shampoo", (req , res)=>{
+
+   
+    const idsS = req.body;
+
+    idsS.forEach(id => {
+        const productS = productsShampoo.find( p => p.id === id );
+        productS.stock--;
+    })
+    res.send(productsShampoo) 
+   
+});
+
+
 
 
 

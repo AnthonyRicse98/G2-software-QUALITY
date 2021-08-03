@@ -1,38 +1,64 @@
-let carrito = [];
+let carritof = [];
+let carritob = [];
+let carritoS = [];
 let total = 0;
 
 function addF(productId, price) {
     console.log(productId, price);
-    carrito.push(productId);
+    carritof.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 function addB(productId, price) {
     console.log(productId, price);
-    carrito.push(productId);
+    carritob.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 function addS(productId, price) {
     console.log(productId, price);
-    carrito.push(productId);
+    carritoS.push(productId);
     total = total + price;
     document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 
-async function pay() {
-    //metodo post
-    const productsFormulaList =await (
-        await fetch("/api/pay", {
+
+async function pay(){
+    const productsBaybysecList =await (
+
+        await fetch("/babysec", {
           method: "post",
-          body: JSON.stringify(carrito),
+          body: JSON.stringify(carritob),
           headers: {
             "Content-Type": "application/json",
           },
         })
       ).json();
-    //window.alert(carrito.join(", \n"));
+
+      const productsFormulaList =await (
+
+        await fetch("/Formula", {
+          method: "post",
+          body: JSON.stringify(carritof),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+
+      const productsShampooList =await (
+
+        await fetch("/Shampoo", {
+          method: "post",
+          body: JSON.stringify(carritoS),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
+  
 }
+
 
 //--Funcion--
     function displayProductsS( productsShampooList){     
