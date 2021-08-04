@@ -116,7 +116,7 @@ async function pay(){
           let buttonShamHTML  = `<button class="button-add" onclick="addS(${element.id}, ${element.price})">Agregar</button>`
 
           if(element.stock <= 0){
-            buttonShamHTML  = `<button disabled class="button-add disabled" onclick="addS(${element.id}, ${element.price})">Sin stock</button>`;
+            buttonShamHTML  = `<button disabled class="button-add disabled" onclick="addS(${element.id}, ${element.price})">stock</button>`;
             
           }
 
@@ -142,7 +142,7 @@ async function pay(){
       let buttonFormHTML  = `<button class="button-add" onclick="addF(${pf.id}, ${pf.price})">Agregar</button>`
 
       if(pf.stock <= 0){
-        buttonFormHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">Sin stock</button>`;
+        buttonFormHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">stock</button>`;
         
       }
 
@@ -166,7 +166,7 @@ function displayProductsB( ){
       
       let buttonBabyHTML  = `<button class="button-add" onclick="addB(${element.id}, ${element.price})">Agregar</button>`
       if(element.stock <= 0){
-        buttonBabyHTML  = `<button disabled class="button-add disabled" onclick="addB(${element.id}, ${element.price})">Sin stock</button>`;
+        buttonBabyHTML  = `<button disabled class="button-add disabled" onclick="addB(${element.id}, ${element.price})">stock</button>`;
         
       }
     
