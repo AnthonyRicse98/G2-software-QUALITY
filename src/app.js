@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const repositoryInka = require("./routes/repositoryInka");
+const repositoryInkaF = require("./routes/repositoryInka");
 const app = express();
 const path = require('path');
 
@@ -16,37 +16,6 @@ app.use(express.json());
 
 app.use(require('./routes/email'));
 //hola mundo
-let productsFormula =
-[
-    {
-        id : 19200101,
-        name : "Babylac Pro 1",
-        price : 47.90, 
-        image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 3
-    },
-    {
-        id : 19200102,
-        name : "Baybylac Pro 3",
-        price : 32.90, 
-        image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 3
-    },
-    {
-        id : 19200103,
-        name : "Baybylac Pro 2",
-        price : 30 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 3
-    },
-    {
-        id : 19200104,
-        name : "Baybylac 3",
-        price : 26.90 , 
-        image: "images/FormulaLactea/Baybylac3.jpg",
-        stock : 3
-    },
-];
 
 let productsBaybysec =
 [
@@ -99,7 +68,7 @@ let productsShampoo =
 
 //--get--
 app.get("/productsFormula", async (req , res )=>{
-    res.send(await repositoryInka.read());
+    res.send(await repositoryInkaF.read());
 });
 
 app.get("/productsBabysec",(req , res )=>{
@@ -130,25 +99,30 @@ app.post("/Babysec", (req , res)=>{
     res.send(productsBaybysec)
 });
 
-app.post("/Formula", (req , res)=>{
+app.post("/Formula", async (req , res)=>{
 
    
     const ids = req.body;
 
-    const productsFormCopy = productsFormula.map(p => ({...p}));
+    const productsFormCopy = await repositoryInkaF.read();
+
+    let errorF = false;
 
     ids.forEach(id => {
-        const productf = productsFormCopy.find( p => p.id === id );
+        const productf = productsFormCopy.find( (p) => p.id === id );
         if(productf.stock > 0){
             productf.stock--;
         }else{
-            throw("Sin Stock");
-        }
-     
+            errorF = true;
+        }    
     });
-    productsFormula = productsFormCopy;
-    res.send(productsFormula) 
-   
+    if(errorF){
+        res.send("Sin stock").statusCode(400);
+    }else{
+        await repositoryInkaF.write(productsFormCopy);
+      
+        res.send(productsFormCopy) ;
+    }  
 });
 
 app.post("/Shampoo", (req , res)=>{
