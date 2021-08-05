@@ -55,10 +55,10 @@ async function pay(){
       ).json();
     }catch{
       window.alert("sin stock Babysec");
-      carritob = [];
-      total = 0 ;
+ 
+      
       await fetchProductsBaby();
-      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+   
 
     }
 
@@ -76,10 +76,10 @@ async function pay(){
       
      }catch{
       window.alert("Sin Stock Formula");
-       carritof = [];
-       total =0;
+      
+      
       await fetchProductsForm();  
-      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+  
 
      }
      
@@ -96,15 +96,14 @@ async function pay(){
         })
       ).json();
     }catch{
-        window.alert("Sin stock Shampoo");
-         carritoS = [];
-          total = 0 ; 
-          await fetchProductssShampoo();
-          document.getElementById("checkout").innerHTML = `Pagar $${total}`;
-
-    
+        window.alert("Sin stock Shampoo");        
+          await fetchProductssShampoo(); 
       }
-  
+      carritof = [];
+      carritob = [];
+      carritoS = [];
+      total = 0 ;
+      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 
 //--Funcion--
