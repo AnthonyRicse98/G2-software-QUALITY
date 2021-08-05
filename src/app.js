@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const repositoryInka = require("./routes/repositoryInka");
 const app = express();
 const path = require('path');
 
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.use(bodyParser.json());
+
+
 
 //nos creara un objeto vacio y el jsones para que entienda angular o reac
 app.use(express.urlencoded({ extended: false }));
@@ -16,32 +19,32 @@ app.use(require('./routes/email'));
 let productsFormula =
 [
     {
-        id : 1.1,
+        id : 19200101,
         name : "Babylac Pro 1",
         price : 47.90, 
         image: "images/FormulaLactea/Baybylac1Pro.jpg",
         stock : 3
     },
     {
-        id : 1.2,
+        id : 19200102,
         name : "Baybylac Pro 3",
         price : 32.90, 
         image: "images/FormulaLactea/Baybylac3Pro.jpg",
-        stock : 15 
+        stock : 3
     },
     {
-        id : 1.3,
+        id : 19200103,
         name : "Baybylac Pro 2",
         price : 30 , 
         image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 10 
+        stock : 3
     },
     {
-        id : 1.4,
+        id : 19200104,
         name : "Baybylac 3",
         price : 26.90 , 
         image: "images/FormulaLactea/Baybylac3.jpg",
-        stock : 8 
+        stock : 3
     },
 ];
 
@@ -52,14 +55,14 @@ let productsBaybysec =
         name : "Babysec Super",
         price : 43.50 , 
         image: "images/Babysec/BabysecXXGblue.jpg",
-        stock : 4,
+        stock : 3,
     },
     {
         id : 2.2,
         name : "Babysec premiun",
         price : 43.50 , 
         image: "images/Babysec/BabysecXGpurple.jpg",
-        stock : 20
+        stock : 3
     },
     {
         id : 2.3,
@@ -83,7 +86,7 @@ let productsShampoo =
         name : "savital anticaspa",
         price : 12.50 , 
         image: "images/Shampoo/SavitalAnticaspa.jpg",
-        stock : 24
+        stock : 3
     },
     {
         id : 3.3,
@@ -95,8 +98,8 @@ let productsShampoo =
 ];
 
 //--get--
-app.get("/productsFormula",(req , res )=>{
-    res.send(productsFormula);
+app.get("/productsFormula", async (req , res )=>{
+    res.send(await repositoryInka.read());
 });
 
 app.get("/productsBabysec",(req , res )=>{
