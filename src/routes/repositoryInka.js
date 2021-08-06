@@ -34,7 +34,6 @@ async function read() {
     image: row[3],
     stock: +row[4],
   }));
-  console.log(productsF);
   return productsF;
 
 }
@@ -57,7 +56,7 @@ async function write(productsF) {
   console.log(result.updateCells);
 
 }
-
+/*
 async function readAndWrite() {
   const productsF = await read();
   await write(productsF);
@@ -65,7 +64,7 @@ async function readAndWrite() {
   await write(productsF);
 }
 
-readAndWrite();
+readAndWrite();*/
 
 module.exports = { 
 
