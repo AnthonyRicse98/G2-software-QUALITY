@@ -1,18 +1,20 @@
 .home-content {
     margin : 0 px;
-    background-color: yellow;
+    background-color: #ff7929;
     font-family: 'Times New Roman', Times, serif;
     font-size: px;
-    border-top: 9px solid green;
-    border-top: 9px solid green;
+    width: 100%;
     text-align: center;
 
-    position: relative;
+    position: absolute;
+}
+.home-content .button-checkout{
+    position: absolute;
 }
 .home-section .home-content .text {
     font-size: 27px;
     font-weight: 600;
-    color: green;
+    color: white;
 }
 
 /*paginacion*/
@@ -29,14 +31,10 @@
 
 /*Contenido de productos*/
 
-.home-section .telefono{
-    background-color: green;
-    color: aliceblue;
-}
-.home-section .telefono .text{
-    font-size: 20px;
-    text-align: center;
-    justify-content: center ;
+.home-section .telefono .img-fluid{
+    margin-top: 50px;
+    width: 100%;
+   
 }
 /*page content*/
 .Formula{
@@ -62,7 +60,7 @@
 /*Formula*/
 .Formula-container{
     border-radius:2px;
-
+    position: 0;
     margin: 15px;
     padding:  2px 16px;
     position: relative;
@@ -139,7 +137,7 @@
 .button {
     transition-duration: 0.4s;
     text-decoration:none ;
-
+    position: fixed;
 }
 .button-add:hover{
     background-color:  #4caf50;
@@ -190,20 +188,21 @@
     font-size:  16px;
 }
 .home-content .button-checkout{
-    background-color: yellow;
-    position:absolute;
-    color: black;
+    background-color:#f14d24 ;
+    position:static;
+    position: absolute;
+    color:white ;
     border-radius: 4px;
-    border: 2px solid green;
+    border: 2px solid  #f14d24;
     right: 15px;
     bottom: 8px;
     transition-duration:  0.4s;
     padding: 5px 1px 1px ;
 }
 .home-content .button-checkout:hover{
-    background-color: green;
-  
+    background-color:white;
+    border: 2px solid white;
     
-    color: yellow;
+    color: #ff7929;
     
 }
