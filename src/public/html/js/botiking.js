@@ -17,7 +17,7 @@ function addBotiF(productId, price) {
         productf.stock--;
   
     console.log(productId, price);
-    carritoBotif.push(productId);
+    carritoBotifInka.push(productId);
     botiTotal = botiTotal + price;
     document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
     displayProductsBotiF();
@@ -25,11 +25,11 @@ function addBotiF(productId, price) {
   }
   function addBotiF(productId, price) {
     //--Descuenta al presionar button--
-        const productf = productsFormulaBotiList.find( p => p.id === productId );
-        productf.stock--;
+        const productbf = productsFormulaBotiList.find( p => p.id === productId );
+        productbf.stock--;
   
     console.log(productId, price);
-    carritoBotifInka.push(productId);
+    carritoBotif.push(productId);
     botiTotal = botiTotal + price;
     document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
     
@@ -48,17 +48,7 @@ function addBotiF(productId, price) {
             },
           })
         ).json();
-        /*
-        const productsFormsMifaList =await (
-          await fetch("/FormulaMifa", {
-            method: "post",
-            body: JSON.stringify(carritoBotif),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-        ).json();
-      */
+       
       }catch{
         window.alert("sin stock Formula");
    
@@ -67,6 +57,17 @@ function addBotiF(productId, price) {
   
       
     }
+   
+
+   
+    carritoBotif = [];
+
+    botiTotal = 0;
+    document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
+
+
+  }
+  async function payBoti(){
     try{
       const productsFormsMifaList =await (
         await fetch("/FormulaMifa", {
@@ -81,13 +82,9 @@ function addBotiF(productId, price) {
       window.alert("sin stock Formula");
       await fetchProductsBotiFormula2();
     }
-
-    carritoMifaf = [];
     carritoBotif = [];
-
     botiTotal = 0;
     document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
-
 
   }
 
@@ -108,10 +105,10 @@ function addBotiF(productId, price) {
 
       productsFormulaBotiHTML +=
         `<div class="Formula-container">
-             <h3>${pf.name}</h3>
+             <h3>${pf.name + "inka"}</h3>
              <img src="${pf.image}" />
-             <h2>${"S/."+pf.price}</h2>
-              ${buttonFormBotiHTML}s
+             <h2>${"S/."+pf.price}</h2>         
+              ${buttonFormBotiHTML}
          </div>`
     });
    
