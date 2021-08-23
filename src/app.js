@@ -138,9 +138,6 @@ let productsBabyMiFa =
 ];
 
 
-let productsFormulaBoti = [];
-productsFormulaBoti.push(productsFormulaMiFa[0]);
-
 //--get--
 /*
 app.get("/productsFormula", async (req , res )=>{
@@ -165,9 +162,8 @@ app.get("/MifaBabysecFormula",(req , res )=>{
     res.send(productsBabyMiFa);
 });
 /*botiking*/ 
-app.get("/BotiProductFormula",(req , res )=>{
-    res.send(productsFormulaBoti);
-});
+
+
 //--post--
 
 app.post("/Babysec", (req , res)=>{
