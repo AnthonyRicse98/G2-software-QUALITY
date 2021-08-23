@@ -4,26 +4,17 @@ let productsBaybysecList = [] ;
 let productsShampooList = []
 
 let productsFormulaMifaList = [];
+let productsBabyMifaList = [];
 
 
 let carritof = [];
 let carritob = [];
 let carritoS = [];
 
-let carritoMifaf = [];
+
 let total = 0;
 
-function addF(productId, price) {
-  //--Descuenta al presionar button--
-      const productf = productsFormulaMifaList.find( p => p.id === productId );
-      productf.stock--;
 
-  console.log(productId, price);
-  carritoMifaf.push(productId);
-  total = total + price;
-  document.getElementById("checkout").innerHTML = `Pagar $${total}`;
-  displayProductsMifaF();
-}
 
 function addF(productId, price) {
     //--Descuenta al presionar button--
@@ -118,31 +109,12 @@ async function pay(){
 
       /*Mifa*/
       
-      try{
-        const productsFormulaMifaList =await (
-  
-          await fetch("/FormulaMifa", {
-            method: "post",
-            body: JSON.stringify(carritoMifaf),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-        ).json();
-        
-       }catch{
-        window.alert("Sin Stock Formula");
-        
-        
-        await fetchProductsForm();  
     
-  
-       }
       carritof = [];
       carritob = [];
       carritoS = [];
 
-      carritoMifaf = [];
+      
 
       total = 0 ;
       document.getElementById("checkout").innerHTML = `Pagar $${total}`;
@@ -174,30 +146,7 @@ async function pay(){
         document.getElementById('Shampoo-conten').innerHTML  = productssHAMPOOHTML ; 
 
    }
-   function displayProductsMifaF( ){     
-    let productsFormulaMifaHTML = '' ; 
-  
-    productsFormulaList.forEach(pf => {
 
-      let buttonFormMifaHTML  = `<button class="button-add" onclick="addF(${pf.id}, ${pf.price})">Agregar</button>`
-
-      if(pf.stock <= 0){
-        buttonFormMifaHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">stock</button>`;
-        
-      }
-
-      productsFormulaMifaHTML +=
-        `<div class="Formula-container">
-             <h3>${pf.name}</h3>
-             <img src="${pf.image}" />
-             <h2>${"S/."+pf.price}</h2>
-              ${buttonFormMifaHTML}
-         </div>`
-    });
-     
-    document.getElementById('Formula-conten').innerHTML  = productsFormulaMifaHTML ; 
-
-}
    function displayProductsF( ){     
     let productsFormulaHTML = '' ; 
   
@@ -260,15 +209,12 @@ async function fetchProductssShampoo(){
 
 }
 
-async function fetchProductsMifaForm(){
-  productsFormulaMifaList =await(await fetch("/MifaProductFormula")).json();
-  displayProductsMifaF();
-}
+
 //--Impresion
 window.onload = async() => {
     await fetchProductsForm();  
     await fetchProductsBaby();
    await fetchProductssShampoo();
 
-   await fetchProductsMifaForm(); 
+   
 }
