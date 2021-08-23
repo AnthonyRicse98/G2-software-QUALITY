@@ -16,7 +16,30 @@ app.use(express.json());
 
 app.use(require('./routes/email'));
 //hola mundo
-
+let productsFormula =
+[
+    {
+        id : 1.1,
+        name : "Babysec Super",
+        price : 43.50 , 
+        image: "images/FormulaLactea/Baybylac1Pro.jpg",
+        stock : 8,
+    },
+    {
+        id : 1.2,
+        name : "Babysec premiun",
+        price : 43.50 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 3
+    },
+    {
+        id : 1.3,
+        name : "Babysec super",
+        price : 43.50 , 
+        image: "images/FormulaLactea/Baybylac3.jpg",
+        stock :5
+    },
+];
 let productsBaybysec =
 [
     {
@@ -65,12 +88,38 @@ let productsShampoo =
         stock : 3
     },
 ];
-
+let productsFormulaMiFa =
+[
+    {
+        id : 1,
+        name : "Babysec SuperMifa",
+        price : 47.90 , 
+        image: "images/FormulaLactea/Baybylac1Pro.jpg",
+        stock : 3,
+    },
+    {
+        id : 2,
+        name : "Babysec premiun",
+        price : 47.90 , 
+        image: "images/FormulaLactea/Baybylac2.jpg",
+        stock : 3
+    },
+    {
+        id : 3,
+        name : "Babysec super",
+        price : 43.90 , 
+        image: "images/FormulaLactea/Baybylac3.jpg",
+        stock :5
+    },
+]; 
 //--get--
+/*
 app.get("/productsFormula", async (req , res )=>{
     res.send(await repositoryInkaF.read());
+});*/
+app.get("/productsFormula",(req , res )=>{
+    res.send(productsFormula);
 });
-
 app.get("/productsBabysec",(req , res )=>{
     res.send(productsBaybysec);
 });
@@ -78,6 +127,11 @@ app.get("/productsShampoo",(req , res )=>{
     res.send(productsShampoo);
 });
 
+
+/*Mifa*/
+app.get("/MifaProductFormula",(req , res )=>{
+    res.send(productsFormulaMiFa);
+});
 //--post--
 
 app.post("/Babysec", (req , res)=>{
@@ -98,7 +152,7 @@ app.post("/Babysec", (req , res)=>{
   
     res.send(productsBaybysec)
 });
-
+/*
 app.post("/Formula", async (req , res)=>{
 
    
@@ -123,6 +177,29 @@ app.post("/Formula", async (req , res)=>{
       
         res.send(productsFormCopy) ;
     }  
+});*/
+app.post("/Formula", (req , res)=>{
+    
+    const ids = req.body;
+    const productsFormCopy = productsFormula.map(p => ({...p}));
+
+
+    ids.forEach(id => {
+        const productf = productsFormCopy.find( p => p.id === id );
+        
+        if(productf.stock > 0 ){
+            productf.stock--;
+        }else{
+            throw("Sin stock Shampoo");
+        }
+  
+    });
+
+
+    productsFormula = productsFormCopy;
+
+    res.send(productsFormula) 
+   
 });
 
 app.post("/Shampoo", (req , res)=>{
@@ -150,9 +227,30 @@ app.post("/Shampoo", (req , res)=>{
 });
 
 //--Nuevo--
+/*Mi Farma*/
+app.post("/FormulaMifa", (req , res)=>{
+    
+    const ids = req.body;
+    const productsFormCopy = productsFormula.map(p => ({...p}));
 
 
+    ids.forEach(id => {
+        const productf = productsFormCopy.find( p => p.id === id );
+        
+        if(productf.stock > 0 ){
+            productf.stock--;
+        }else{
+            throw("Sin stock Shampoo");
+        }
+  
+    });
 
+
+    productsFormula = productsFormCopy;
+
+    res.send(productsFormula) 
+   
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(3000, () => {
