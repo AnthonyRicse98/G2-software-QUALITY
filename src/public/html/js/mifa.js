@@ -28,7 +28,7 @@ function addMifaF(productId, price) {
   }
 
 
-  async function pay(){
+  async function payMifa(){
     try{
         const productsBaybysecMifaList =await (
   

@@ -136,6 +136,11 @@ let productsBabyMiFa =
         stock :5
     },
 ];
+
+
+let productsFormulaBoti = [];
+productsFormulaBoti.push(productsFormulaMiFa[0]);
+
 //--get--
 /*
 app.get("/productsFormula", async (req , res )=>{
@@ -158,6 +163,10 @@ app.get("/MifaProductFormula",(req , res )=>{
 });
 app.get("/MifaBabysecFormula",(req , res )=>{
     res.send(productsBabyMiFa);
+});
+/*botiking*/ 
+app.get("/BotiProductFormula",(req , res )=>{
+    res.send(productsFormulaBoti);
 });
 //--post--
 
@@ -274,6 +283,30 @@ app.post("/BabysecMifa", (req , res)=>{
     productsBabyMiFa = productsBabyCopyMifa;
 
     res.send(productsBabyMiFa) 
+   
+});
+/*boti*/
+app.post("/FormulaBoti", (req , res)=>{
+    
+    const idbs = req.body;
+    const productsFormCopyBoti = productsFormulaBoti.map(p => ({...p}));
+
+
+    idbs.forEach(id => {
+        const productbf = productsFormCopyBoti.find( p => p.id === id );
+        
+        if(productbf.stock > 0 ){
+            productbf.stock--;
+        }else{
+            throw("Sin stock formula");
+        }
+  
+    });
+
+
+    productsFormulaBoti = productsFormCopyBoti;
+
+    res.send(productsFormulaBoti) 
    
 });
 
