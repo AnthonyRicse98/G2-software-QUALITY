@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const repositoryInkaF = require("./routes/repositoryInka");
+const repositoryMifa = require("./routes/repositoryMifa");
+
 const app = express();
 const path = require('path');
 
@@ -88,6 +89,7 @@ let productsShampoo =
         stock : 3
     },
 ];
+/*
 let productsFormulaMiFa =
 [
     {
@@ -111,7 +113,7 @@ let productsFormulaMiFa =
         image: "images/FormulaLactea/Baybylac3.jpg",
         stock :5
     },
-]; 
+];*/ 
 let productsBabyMiFa =
 [
     {
@@ -136,6 +138,7 @@ let productsBabyMiFa =
         stock :5
     },
 ];
+let FormulaMifarma =[];
 
 
 //--get--
@@ -155,8 +158,11 @@ app.get("/productsShampoo",(req , res )=>{
 
 
 /*Mifa*/
-app.get("/MifaProductFormula",(req , res )=>{
+/*app.get("/MifaProductFormula",(req , res )=>{
     res.send(productsFormulaMiFa);
+});*/
+app.get("/MifaProductFormula", async (req , res )=>{
+    res.send(await repositoryMifa.read());
 });
 app.get("/MifaBabysecFormula",(req , res )=>{
     res.send(productsBabyMiFa);
@@ -235,29 +241,37 @@ app.post("/Shampoo", (req , res)=>{
 
 //--Nuevo--
 /*Mi Farma*/
-app.post("/FormulaMifa", (req , res)=>{
-    
-    const idms = req.body;
-    const productsFormCopyMifa = productsFormulaMiFa.map(p => ({...p}));
 
-
-    idms.forEach(id => {
-        const productmf = productsFormCopyMifa.find( p => p.id === id );
-        
-        if(productmf.stock > 0 ){
-            productmf.stock--;
-        }else{
-            throw("Sin stock Shampoo");
-        }
+app.post("/FormulaMifa", async (req, res) => {
+    const ids = req.body;
+    const productsMifafoCopy = await repositoryMifa.read();
   
+    let error = false;
+    ids.forEach((id) => {
+      const product = productsMifafoCopy.find((p) => p.id === id);
+      if (product.stock > 0) {
+        product.stock--;
+      } else {
+        error = true;
+      }
     });
+  
+    if (error) {
+      res.send("Sin stock").statusCode(400);
+    }
+    else {
+        FormulaMifarma = productsMifafoCopy;
+      res.send(FormulaMifarma);
+    }
+  });
 
-
+  
+/*
     productsFormulaMiFa = productsFormCopyMifa;
 
-    res.send(productsFormulaMiFa) 
+    res.send(productsFormulaMiFa) */
    
-});
+
 app.post("/BabysecMifa", (req , res)=>{
     
     const idmb = req.body;
@@ -276,7 +290,7 @@ app.post("/BabysecMifa", (req , res)=>{
     });
 
 
-    productsBabyMiFa = productsBabyCopyMifa;
+    FormulaMifarma = productsBabyCopyMifa;
 
     res.send(productsBabyMiFa) 
    

@@ -1,5 +1,6 @@
-const { response } = require("express");
+const express = require('express');
 const { google } = require("googleapis");
+const { propfind } = require("./email");
 
 const oAuth2Client = new google.auth.OAuth2(
   "505566547689-tain50kkdp2bu54iesbh5rqa6mjr6pe6.apps.googleusercontent.com",
@@ -26,16 +27,20 @@ async function read(){
     });
 
     const rows = response.data.values;
-    if(rows.length){
-        console.log('Name, Major:');
-        // Print columns A and E, which correspond to indices 0 and 4.
-        rows.map((row) => {
-          console.log(`${row[0]}, ${row[4]}`);
-        });
-      } else {
-        console.log('No data found.');
-      }
-    
+    const productsMifaf = rows.map((row) => ({
+        id : +row[0],
+        name : row[1],
+        price:+row[2],
+        image:row[3],
+        stock:+row[4],
+    }))
+console.log(productsMifaf)
+return productsMifaf;
 }
+module.exports = {
+  read,
+};
 
-read();
+
+
+
