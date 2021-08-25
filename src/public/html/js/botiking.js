@@ -17,7 +17,7 @@ function addBotiF(productId, price) {
         productf.stock--;
   
     console.log(productId, price);
-    carritoBotifInka.push(productId);
+    carritoBotif.push(productId);
     botiTotal = botiTotal + price;
     document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
     displayProductsBotiF();
@@ -72,7 +72,7 @@ function addBotiF(productId, price) {
       const productsFormsMifaList =await (
         await fetch("/FormulaMifa", {
           method: "post",
-          body: JSON.stringify(carritoBotifInka),
+          body: JSON.stringify(carritoBotif),
           headers: {
             "Content-Type": "application/json",
           },
@@ -96,19 +96,15 @@ function addBotiF(productId, price) {
 
     productsFormulaBotiList.forEach(pf => {
 
-      let buttonFormBotiHTML  = `<button class="button-add" onclick="addBotiF(${pf.id}, ${pf.price})">Agregar</button>`
-
-      if(pf.stock <= 0){
-        buttonFormBotiHTML  = `<button disabled class="button-add disabled" onclick="addBotiF(${pf.id}, ${pf.price})">stock</button>`;
-        
-      }
+   
+     
 
       productsFormulaBotiHTML +=
         `<div class="Formula-container">
              <h3>${pf.name + "inka"}</h3>
              <img src="${pf.image}" />
              <h2>${"S/."+pf.price}</h2>         
-              ${buttonFormBotiHTML}
+             <h2>${"Stock = "+pf.stock}<h2>
          </div>`
     });
    
