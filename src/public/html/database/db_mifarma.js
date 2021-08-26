@@ -21,12 +21,11 @@ async function read(){
             throw error;
           const productsMifaf = results.map(p =>({...p})); 
 
-          productsMifaf.map(row => {
-                console.log(row);
-          });
+       
           
-
-            return productsMifaf;        
+          console.log(productsMifaf);
+          return productsMifaf;
+                 
     });
   
 }
