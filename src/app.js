@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const repositoryMifa = require("./routes/repositoryMifa");
-
 const app = express();
 const path = require('path');
 
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.use(bodyParser.json());
+
+app.use( require('./route'));
+
 
 
 
@@ -16,7 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(require('./routes/email'));
-//hola mundo
+//hola 
+
 let productsFormula =
 [
     {
@@ -146,6 +149,7 @@ let FormulaMifarma =[];
 app.get("/productsFormula", async (req , res )=>{
     res.send(await repositoryInkaF.read());
 });*/
+
 app.get("/productsFormula",(req , res )=>{
     res.send(productsFormula);
 });
@@ -161,9 +165,10 @@ app.get("/productsShampoo",(req , res )=>{
 /*app.get("/MifaProductFormula",(req , res )=>{
     res.send(productsFormulaMiFa);
 });*/
+/*
 app.get("/MifaProductFormula", async (req , res )=>{
-    res.send(await repositoryMifa.read());
-});
+    res.send(await db_mifa.read());
+});*/
 app.get("/MifaBabysecFormula",(req , res )=>{
     res.send(productsBabyMiFa);
 });
@@ -190,7 +195,7 @@ app.post("/Babysec", (req , res)=>{
   
     res.send(productsBaybysec)
 });
-
+/*
 app.post("/Formula", (req , res)=>{
     
     const ids = req.body;
@@ -214,7 +219,7 @@ app.post("/Formula", (req , res)=>{
     res.send(productsFormula) 
    
 });
-
+*/
 app.post("/Shampoo", (req , res)=>{
     
     const idsS = req.body;
