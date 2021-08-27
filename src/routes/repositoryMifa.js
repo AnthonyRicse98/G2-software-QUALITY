@@ -22,8 +22,8 @@ const sheets = google.sheets({ version: "v4", auth: oAuth2Client });
 
 async function read(){
     const response  = await sheets.spreadsheets.values.get({
-        spreadsheetId: '1jehcykjCyFqaqEHl0rBqmbMLwc4w332QZDIaMdw0cTE',
-         range: 'productsFormula!A2:E',
+        spreadsheetId: '1Yr78CP00aaV_WqXIVu9bS-ScAYdtBj7aiLN1k8N7XmE',
+         range: 'Products!A2:E',
     });
 
     const rows = response.data.values;

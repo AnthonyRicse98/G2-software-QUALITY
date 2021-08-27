@@ -1,4 +1,5 @@
 let productsFormulaBotiList = [];
+let productsFormulaBotiListMifa = [];
 let productsFormulaBotiInkaList = [];
 let productsFormulaBotiMifaList = [];
 
@@ -23,7 +24,7 @@ function addBotiF(productId, price) {
     displayProductsBotiF();
     
   }
-  function addBotiF(productId, price) {
+  function addBotiF2(productId, price) {
     //--Descuenta al presionar button--
         const productbf = productsFormulaBotiList.find( p => p.id === productId );
         productbf.stock--;
@@ -36,57 +37,6 @@ function addBotiF(productId, price) {
     displayProductsBotiF2();
   }
 
-  async function payBoti(){
-    try{
-        const productsFormsInkaList =await (
-  
-          await fetch("/Formula", {
-            method: "post",
-            body: JSON.stringify(carritoBotif),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-        ).json();
-       
-      }catch{
-        window.alert("sin stock Formula");
-   
-        
-        await fetchProductsBotiFormula();
-  
-      
-    }
-   
-
-   
-    carritoBotif = [];
-
-    botiTotal = 0;
-    document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
-
-
-  }
-  async function payBoti(){
-    try{
-      const productsFormsMifaList =await (
-        await fetch("/FormulaMifa", {
-          method: "post",
-          body: JSON.stringify(carritoBotif),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
-    }catch{
-      window.alert("sin stock Formula");
-      await fetchProductsBotiFormula2();
-    }
-    carritoBotif = [];
-    botiTotal = 0;
-    document.getElementById("checkout").innerHTML = `Pagar $${botiTotal}`;
-
-  }
 
   function displayProductsBotiF(){   
 
@@ -97,62 +47,50 @@ function addBotiF(productId, price) {
     productsFormulaBotiList.forEach(pf => {
 
    
-     
+      let buttonFormBotiHTML  = `<a href="https://inkafarma.pe/buscador?keyword=formula"><button class="button-add" onclick="addBotiF2(${pf.id}, ${pf.price})">Inkafarma</button></a>`
+
+
+      productsFormulaBotiHTML +=
+
+        `<div class="Formula-container">
+             <h3>${pf.name }</h3>
+             <img src="${pf.image}" />
+             <h2>${"S/."+pf.price}</h2>         
+             ${buttonFormBotiHTML}
+         </div>`
+    });
+    productsFormulaBotiListMifa.forEach(pf => {
+
+   
+      let buttonFormBotiHTML  = `<a href="https://www.mifarma.com.pe/buscador?keyword=formula"><button class="button-add" onclick="addBotiF2(${pf.id}, ${pf.price})">Mifarma</button></a>`
 
       productsFormulaBotiHTML +=
         `<div class="Formula-container">
-             <h3>${pf.name + "inka"}</h3>
+             <h3>${pf.name }</h3>
              <img src="${pf.image}" />
              <h2>${"S/."+pf.price}</h2>         
-             <h2>${"Stock = "+pf.stock}<h2>
+             ${buttonFormBotiHTML}
          </div>`
     });
    
     document.getElementById('Formula-Boti').innerHTML  = productsFormulaBotiHTML ; 
 
 }
-function displayProductsBotiF2(){   
-
-  let productsFormulaBotiHTML = ' '; 
-
-
-
-  productsFormulaBotiList.forEach(pf => {
-
-    let buttonFormBotiHTML  = `<button class="button-add" onclick="addBotiF(${pf.id}, ${pf.price})">Agregar</button>`
-
-    if(pf.stock <= 0){
-      buttonFormBotiHTML  = `<button disabled class="button-add disabled" onclick="addBotiF(${pf.id}, ${pf.price})">stock</button>`;
-      
-    }
-
-    productsFormulaBotiHTML +=
-      `<div class="Formula-container">
-           <h3>${pf.name}</h3>
-           <img src="${pf.image}" />
-           <h2>${"S/."+pf.price}</h2>
-            ${buttonFormBotiHTML}s
-       </div>`
-  });
- 
-  document.getElementById('Formula-Boti').innerHTML  = productsFormulaBotiHTML ; 
-
-}
 async function fetchProductsBotiFormula(){
   productsFormulaBotiInkaList =await(await fetch("/productsFormula")).json();
+  productsFormulaBotiMifaList =await(await fetch("/MifaProductFormula")).json();
+    
+    
+   
   
   
   productsFormulaBotiList.push(productsFormulaBotiInkaList[0]);
   productsFormulaBotiList.push(productsFormulaBotiInkaList[1]);
-
+  productsFormulaBotiListMifa.push(productsFormulaBotiMifaList[3]);
     displayProductsBotiF();
   }
   async function fetchProductsBotiFormula2(){
-    productsFormulaBotiMifaList =await(await fetch("/MifaProductFormula")).json();
     
-    
-    productsFormulaBotiList.push(productsFormulaBotiMifaList[2]);
-  
   
       displayProductsBotiF2();
     }

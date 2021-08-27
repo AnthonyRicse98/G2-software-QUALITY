@@ -152,7 +152,7 @@ async function pay(){
   
     productsFormulaList.forEach(pf => {
 
-      let buttonFormHTML  = `<button class="button-add" onclick="addF(${pf.id}, ${pf.price})">Agregar</button>`
+      let buttonFormHTML  = `<a href="https://inkafarma.pe/buscador?keyword=formula"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
 
       if(pf.stock <= 0){
         buttonFormHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">stock</button>`;
@@ -165,6 +165,7 @@ async function pay(){
              <img src="${pf.image}" />
              <h2>${"S/."+pf.price}</h2>
               ${buttonFormHTML}
+    
          </div>`
     });
      
