@@ -149,10 +149,10 @@ let FormulaMifarma =[];
 app.get("/productsFormula", async (req , res )=>{
     res.send(await repositoryInkaF.read());
 });*/
-
+/*
 app.get("/productsFormula",(req , res )=>{
     res.send(productsFormula);
-});
+});*/
 app.get("/productsBabysec",(req , res )=>{
     res.send(productsBaybysec);
 });
