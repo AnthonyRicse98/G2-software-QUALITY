@@ -3,27 +3,13 @@ let carritoMifab = [];
 
 let MifaTotal = 0;
 
-function addMifaF(productId, price) {
-    //--Descuenta al presionar button--
-        const productf = productsFormulaMifaList.find( p => p.id === productId );
-        productf.stock--;
+function addMifaF() {
   
-    console.log(productId, price);
-    carritoMifaf.push(productId);
-    MifaTotal = MifaTotal + price;
-    document.getElementById("checkout").innerHTML = `Pagar $${MifaTotal}`;
     displayProductsMifaF();
   }
 
-  function addMifaB(productId, price) {
-    //--Descuenta al presionar button--
-        const productb = productsBabyMifaList.find( pb => pb.id === productId );
-        productb.stock--;
-  
-    console.log(productId, price);
-    carritoMifab.push(productId);
-    MifaTotal = MifaTotal + price;
-    document.getElementById("checkout").innerHTML = `Pagar $${MifaTotal}`;
+  function addMifaB() {
+ 
     displayProductsMifaB();
   }
 
@@ -80,7 +66,7 @@ function displayProductsMifaF( ){
   
     productsFormulaMifaList.forEach(pf => {
 
-      let buttonFormMifaHTML  = `<button class="button-add" onclick="addMifaF(${pf.id}, ${pf.price})">Agregar</button>`
+      let buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/buscador?keyword=formula"><button class="button-add" onclick="addMifaF(${pf.id}, ${pf.price})">Mifarma</button></a>`
 
       if(pf.stock <= 0){
         buttonFormMifaHTML  = `<button disabled class="button-add disabled" onclick="addMifaF(${pf.id}, ${pf.price})">stock</button>`;
@@ -104,7 +90,7 @@ function displayProductsMifaB( ){
   
     productsBabyMifaList.forEach(elemento => {
 
-      let buttonBabyMifaHTML  = `<button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Agregar</button>`
+      let buttonBabyMifaHTML  = `<a href="https://www.mifarma.com.pe/buscador?keyword=formula"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a>`
 
       if(elemento.stock <= 0){
         buttonBabyMifaHTML  = `<button disabled class="button-add disabled" onclick="addMifaB(${elemento.id}, ${elemento.price})">stock</button>`;
