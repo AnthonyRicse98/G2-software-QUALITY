@@ -66,7 +66,25 @@ function displayProductsMifaF( ){
   
     productsFormulaMifaList.forEach(pf => {
 
-      let buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/buscador?keyword=formula"><button class="button-add" onclick="addMifaF(${pf.id}, ${pf.price})">Mifarma</button></a>`
+      let buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/babylac-pro-1-neuro-advance/024407"><button class="button-add" onclick="addMifaF(${pf.id}, ${pf.price})">Mifarma</button></a>`
+      if(pf.id ===1001){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/babylac-pro-1-neuro-advance/024407"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ===1002){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/babylac-pro-2-neuro-advance/024409"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==1003){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/Babylac-3-DHA-&-ARA-Lata-900-G/026918"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      } if(pf.id ==1004){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/similac-3-pro-sensitive/012559"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==1005){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/similac-3-pro-sensitive/026352"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==1006){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/pediasure-triplesure-sabor-fresa/023711"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==1007){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/pediasure-plus-liquido-sabor-vainilla/011086"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==1008){
+        buttonFormMifaHTML  = `<a href="https://www.mifarma.com.pe/producto/pediasure-liquido-triple-sure-sabor-chocolate/023869"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }
+
 
       if(pf.stock <= 0){
         buttonFormMifaHTML  = `<button disabled class="button-add disabled" onclick="addMifaF(${pf.id}, ${pf.price})">stock</button>`;

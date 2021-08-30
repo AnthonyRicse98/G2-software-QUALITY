@@ -153,6 +153,23 @@ async function pay(){
     productsFormulaList.forEach(pf => {
 
       let buttonFormHTML  = `<a href="https://inkafarma.pe/buscador?keyword=formula"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      if(pf.id ==1){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/babylac-pro-1-neuro-advance/024407"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==2){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/babylac-pro-2-neuro-advance/024409"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==3){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/Babylac-3-DHA-&-ARA-Lata-900-G/026918"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      } if(pf.id ==4){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/similac-3-pro-sensitive/012559"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==5){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/similac-3-pro-sensitive/026352"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==6){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/pediasure-triplesure-sabor-fresa/023711"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==7){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/pediasure-plus-liquido-sabor-vainilla/011086"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }else if(pf.id ==8){
+        buttonFormHTML  = `<a href="https://inkafarma.pe/producto/pediasure-liquido-triple-sure-sabor-vainilla/023870"><button class="button-add" onclick="addF(${pf.id}, ${pf.price})">inkafarma</button></a> `
+      }
 
       if(pf.stock <= 0){
         buttonFormHTML  = `<button disabled class="button-add disabled" onclick="addF(${pf.id}, ${pf.price})">stock</button>`;
