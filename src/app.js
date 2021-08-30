@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const repositoryMifa = require("./routes/repositoryMifa");
+//const repositoryMifa = require("./routes/repositoryMifa");
 const app = express();
 const path = require('path');
 
@@ -18,32 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(require('./routes/email'));
-//hola 
 
-let productsFormula =
-[
-    {
-        id : 1.1,
-        name : "Babysec Super",
-        price : 47.90 , 
-        image: "images/FormulaLactea/Baybylac1Pro.jpg",
-        stock : 8,
-    },
-    {
-        id : 1.2,
-        name : "Babysec premiun",
-        price : 47.90 , 
-        image: "images/FormulaLactea/Baybylac2.jpg",
-        stock : 3
-    },
-    {
-        id : 1.3,
-        name : "Babysec super",
-        price : 48.90 , 
-        image: "images/FormulaLactea/Baybylac3.jpg",
-        stock :5
-    },
-];
 let productsBaybysec =
 [
     {
@@ -162,7 +137,7 @@ app.get("/productsShampoo",(req , res )=>{
 
 
 /*Mifa*/
-/*app.get("/MifaProductFormula",(req , res )=>{
+/*app.get("/c",(req , res )=>{
     res.send(productsFormulaMiFa);
 });*/
 /*

@@ -47,7 +47,7 @@ function addBotiF(productId, price) {
     productsFormulaBotiList.forEach(pf => {
 
    
-      let buttonFormBotiHTML  = `<a href="https://inkafarma.pe/buscador?keyword=formula"><button class="button-add" onclick="addBotiF2(${pf.id}, ${pf.price})">Inkafarma</button></a>`
+      let buttonFormBoti1HTML  = `<a href="https://inkafarma.pe/buscador?keyword=formula"><button class="button-add" onclick="addBotiF2(${pf.id}, ${pf.price})">Inkafarma</button></a>`
 
 
       productsFormulaBotiHTML +=
@@ -56,7 +56,7 @@ function addBotiF(productId, price) {
              <h3>${pf.name }</h3>
              <img src="${pf.image}" />
              <h2>${"S/."+pf.price}</h2>         
-             ${buttonFormBotiHTML}
+             ${buttonFormBoti1HTML }
          </div>`
     });
     productsFormulaBotiListMifa.forEach(pf => {
@@ -86,12 +86,10 @@ async function fetchProductsBotiFormula(){
   
   productsFormulaBotiList.push(productsFormulaBotiInkaList[0]);
   productsFormulaBotiList.push(productsFormulaBotiInkaList[1]);
-  productsFormulaBotiListMifa.push(productsFormulaBotiMifaList[3]);
+  productsFormulaBotiListMifa.push(productsFormulaBotiMifaList[2]);
     displayProductsBotiF();
   }
   async function fetchProductsBotiFormula2(){
-    
-  
       displayProductsBotiF2();
     }
 
