@@ -13,6 +13,7 @@ routerMy.get('/productsFormula',(req,res) =>{
         }
     });
 });
+
 routerMy.get('/MifaProductFormula',(req,res) =>{
     conexion.query('SELECT * FROM mifarmaformula' , (error , result)=>{
         if(error){
