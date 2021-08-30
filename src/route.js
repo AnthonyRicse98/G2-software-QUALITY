@@ -13,9 +13,28 @@ routerMy.get('/productsFormula',(req,res) =>{
         }
     });
 });
+routerMy.get('/productsBabysec',(req,res) =>{
+    conexion.query('SELECT * FROM inkafarmababysec' , (error , result)=>{
+        if(error){
+            throw error ;
+        }else{
+            res.send(result);
+        }
+    });
+});
 
+//mifarma
 routerMy.get('/MifaProductFormula',(req,res) =>{
     conexion.query('SELECT * FROM mifarmaformula' , (error , result)=>{
+        if(error){
+            throw error ;
+        }else{
+            res.send(result);
+        }
+    });
+});
+routerMy.get('/MifaBabysecFormula',(req,res) =>{
+    conexion.query('SELECT * FROM mifarmababysec' , (error , result)=>{
         if(error){
             throw error ;
         }else{

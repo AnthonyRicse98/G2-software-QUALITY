@@ -17,107 +17,22 @@ let total = 0;
 
 
 function addF(productId, price) {
-    //--Descuenta al presionar button--
-        const productf = productsFormulaList.find( p => p.id === productId );
-        productf.stock--;
-
-    console.log(productId, price);
-    carritof.push(productId);
-    total = total + price;
-    document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+ 
     displayProductsF();
 }
 function addB(productId, price) {
-  const productb = productsBaybysecList.find( p => p.id === productId );
-  productb.stock--;
 
-    console.log(productId, price);
-    carritob.push(productId);
-    total = total + price;
-    document.getElementById("checkout").innerHTML = `Pagar $${total}`;
     displayProductsB();
 }
 function addS(productId, price) {
-  const productS = productsShampooList.find( p => p.id === productId );
-  productS.stock--;
-    console.log(productId, price);
-    carritoS.push(productId);
-    total = total + price;
-    document.getElementById("checkout").innerHTML = `Pagar $${total}`;
+
     displayProductsS();
 }
 
 
 async function pay(){
-    try{
-      const productsBaybysecList =await (
-
-        await fetch("/babysec", {
-          method: "post",
-          body: JSON.stringify(carritob),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
-    }catch{
-      window.alert("sin stock Babysec");
- 
-      
-      await fetchProductsBaby();
-   
-
-    }
-
-     try{
-      const productsFormulaList =await (
-
-        await fetch("/Formula", {
-          method: "post",
-          body: JSON.stringify(carritof),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
-      
-     }catch{
-      window.alert("Sin Stock Formula");
-      
-      
-      await fetchProductsForm();  
-  
-
-     }
      
 
-    try{
-      const productsShampooList =await (
-
-        await fetch("/Shampoo", {
-          method: "post",
-          body: JSON.stringify(carritoS),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
-    }catch{
-        window.alert("Sin stock Shampoo");        
-          await fetchProductssShampoo(); 
-      }
-
-      /*Mifa*/
-      
-    
-      carritof = [];
-      carritob = [];
-      carritoS = [];
-
-      
-
-      total = 0 ;
-      document.getElementById("checkout").innerHTML = `Pagar $${total}`;
 }
 
 //--Funcion--
@@ -126,7 +41,7 @@ async function pay(){
      
        
         productsShampooList.forEach(element => {
-          let buttonShamHTML  = `<button class="button-add" onclick="addS(${element.id}, ${element.price})">Agregar</button>`
+          let buttonShamHTML  = ``
 
           if(element.stock <= 0){
             buttonShamHTML  = `<button disabled class="button-add disabled" onclick="addS(${element.id}, ${element.price})">stock</button>`;
@@ -195,7 +110,27 @@ function displayProductsB( ){
   
     productsBaybysecList.forEach(element => {
       
-      let buttonBabyHTML  = `<button class="button-add" onclick="addB(${element.id}, ${element.price})">Agregar</button>`
+      let buttonBabyHTML  = ``
+      console.log(productsBaybysecList);
+      if(element.id==11){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1al-babysec-super-premium-talla-xxg/012519"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }else if(element.id==12){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1al-babysec-premium-super-mega-talla-xg/023838"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }else if(element.id==13){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1al-babysec-super-premium-talla-xg/012528"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }else if(element.id==14){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1al-recien-nacido-huggies-natural-care/010470"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }else if(element.id==15){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1ales-huggies-bigpack-natural-care-puro-y-natura/026072"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }else if(element.id==16){
+        buttonBabyHTML  = `<a href="https://inkafarma.pe/producto/pa%C3%B1al-huggies-unisex-talla-p-natural-care/010472"><button class="button-add" onclick="addB(${element.id}, ${element.price})">inkafarma</button></a>`
+
+      }
       if(element.stock <= 0){
         buttonBabyHTML  = `<button disabled class="button-add disabled" onclick="addB(${element.id}, ${element.price})">stock</button>`;
         

@@ -15,49 +15,8 @@ function addMifaF() {
 
 
   async function payMifa(){
-    try{
-        const productsBaybysecMifaList =await (
+
   
-          await fetch("/BabysecMifa", {
-            method: "post",
-            body: JSON.stringify(carritoMifab),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-        ).json();
-      }catch{
-        window.alert("sin stock Babysec");
-   
-        
-        await fetchProductsMifaBaby();
-     
-  
-      }
-  try{
-    const productsFormulaMifaList =await (
-
-      await fetch("/FormulaMifa", {
-        method: "post",
-        body: JSON.stringify(carritoMifaf),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-    ).json();
-    
-   }catch{
-    window.alert("Sin Stock Formula");
-    
-    
-    await fetchProductsMifaForm();  
-
-
-   }
-   carritoMifaf = [];
-   carritoMifab=[];
-   MifaTotal = 0;
-   document.getElementById("checkout").innerHTML = `Pagar $${MifaTotal}`;
 
 
 }
@@ -108,8 +67,20 @@ function displayProductsMifaB( ){
   
     productsBabyMifaList.forEach(elemento => {
 
-      let buttonBabyMifaHTML  = `<a href="https://www.mifarma.com.pe/buscador?keyword=formula"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a>`
-
+      let buttonBabyMifaHTML  = ``
+      if(elemento.id ==1001){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1al-babysec-super-premium-talla-xxg/012519"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else  if(elemento.id ==1002){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1al-babysec-premium-super-mega-talla-xg/023838"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else  if(elemento.id ==1013){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1al-babysec-super-premium-talla-xg/012528"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else  if(elemento.id ==1014){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1al-recien-nacido-huggies-natural-care/010470"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else  if(elemento.id ==1015){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1ales-huggies-bigpack-natural-care-puro-y-natura/026072"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else  if(elemento.id ==1016){
+        buttonBabyMifaHTML =`<a href="https://www.mifarma.com.pe/producto/pa%C3%B1al-huggies-unisex-talla-p-natural-care/010472"><button class="button-add" onclick="addMifaB(${elemento.id}, ${elemento.price})">Mifarma</button></a> `;
+      }else 
       if(elemento.stock <= 0){
         buttonBabyMifaHTML  = `<button disabled class="button-add disabled" onclick="addMifaB(${elemento.id}, ${elemento.price})">stock</button>`;
         

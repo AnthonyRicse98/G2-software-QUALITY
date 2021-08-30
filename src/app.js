@@ -37,7 +37,7 @@ let productsBaybysec =
     },
     {
         id : 2.3,
-        name : "Babysec super",
+        name : "BabysecSuper(oh)",
         price : 43 , 
         image: "images/Babysec/BabysecXGPblue.jpg",
         stock :5
@@ -47,7 +47,7 @@ let productsShampoo =
 [
     {
         id : 3.1,
-        name : "savital colageno",
+        name : "savitalColageno",
         price : 12.50 , 
         image: "images/Shampoo/SavitalColageno.jpg",
         stock : 5
@@ -96,44 +96,16 @@ let productsBabyMiFa =
 
 
 
-app.get("/productsBabysec",(req , res )=>{
-    res.send(productsBaybysec);
-});
 app.get("/productsShampoo",(req , res )=>{
     res.send(productsShampoo);
 });
-
+/*
 app.get("/MifaBabysecFormula",(req , res )=>{
     res.send(productsBabyMiFa);
-});
+});/*
 /*botiking*/ 
 
 
-//--post--
-
-app.post("/FormulaBoti", (req , res)=>{
-    
-    const idbs = req.body;
-    const productsFormCopyBoti = productsFormulaBoti.map(p => ({...p}));
-
-
-    idbs.forEach(id => {
-        const productbf = productsFormCopyBoti.find( p => p.id === id );
-        
-        if(productbf.stock > 0 ){
-            productbf.stock--;
-        }else{
-            throw("Sin stock formula");
-        }
-  
-    });
-
-
-    productsFormulaBoti = productsFormCopyBoti;
-
-    res.send(productsFormulaBoti) 
-   
-});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(3000, () => {
